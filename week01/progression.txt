@@ -1,0 +1,17 @@
+Prob01 - Write a function that takes a list or string and returns a list of tuples (count, element) for each group of identical consecutive elements.
+ให้ลิสต์ (หรือสตริง) เช่น "aaaabccaadeeee" เขียนฟังก์ชันที่คืนค่าเป็นรายการคู่ (count, element) สำหรับกลุ่มตัวเหมือนกันที่ต่อเนื่องกัน
+ตัวอย่างผลลัพธ์จากตัวอย่าง: [(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]
+
+วิธีทำ :
+1.ต้องแยกลิสต์ออกเป็น กลุ่มของตัวที่ซ้ำกันต่อเนื่อง เช่น "aaaa","b","cc","aa","d","eeee"
+2.จากนั้นแปลงแต่ละกลุ่มเป็น (length, element)
+3.ทำแบบ functional — ใช้ pattern matching/recursion หรือใช้ฟังก์ชันมาตรฐานเช่น span / group (จาก Data.List)
+
+Prob02 - Write your own implementations of map and filter functions only using foldr.
+แสดง map และ filter สามารถนิยามได้โดยใช้ foldr ได้อย่างไร พร้อมอธิบายเหตุผลเชิง functional
+
+วิธีทำ :
+1.foldr มีรูปแบบ foldr :: (a -> b -> b) -> b -> [a] -> b
+2.ถ้าต้องการสร้างลิสต์ผลลัพธ์ใหม่ เราสามารถใช้ foldr ที่ทำงานจากขวาไปซ้าย เพื่อค่อย ๆ "ประกอบ" ผลลัพธ์ขึ้นมา
+3.สำหรับ map f เราต้องใส่ f x ลงหน้าผลลัพธ์สะสม: \x acc -> f x : acc
+4.สำหรับ filter p เราตรวจเงื่อนไข ถ้า p x จริง ให้ใส่ x ลงหน้า acc มิฉะนั้นข้าม
